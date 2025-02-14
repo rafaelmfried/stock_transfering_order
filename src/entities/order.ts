@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: "ORDERS" }) // Nome real da tabela no Oracle
+@Entity({ name: "ORDERS" })
 export class Order {
   @PrimaryGeneratedColumn()
   id!: number;

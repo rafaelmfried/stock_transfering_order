@@ -4,12 +4,12 @@ import { Order } from "@/entities/order";
 
 export async function GET(req: NextRequest) {
    await initializeDB();
-    const productRepo = AppDataSource.getRepository(Order);
-    let orders: Order[];
+    const orderRepo = AppDataSource.getRepository(Order);
+    let newOrders: Order[];
   
     if (req.method === "GET") {
       try {
-        orders = await productRepo.find();
+        newOrders = await orderRepo.find();
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
         return NextResponse.json({ error: "Erro ao buscar dados" }, { status: 500 });
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Método não permitido" }, { status: 405 });
     }
 
-  return NextResponse.json(orders, { status: 200 });
+  return NextResponse.json(newOrders, { status: 200 });
 }
 
 // export async function POST(req: NextRequest) {

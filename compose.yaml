@@ -10,14 +10,9 @@ services:
     environment:
       - NODE_ENV=development
       - PORT=3000
-  database:
-    image: postgres:13
-    environment:
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=mydatabase
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-volumes:
-  postgres_data:
-    driver: local
+      - DB_HOST=sgmpmc.ddns.com.br
+      - DB_PORT=8978
+      - DB_USER=sgmbusiness
+      - DB_PASSWORD=s5m73cn0l051a
+      - DB_SERVICE_NAME=WINT
+      - DB_CONNECT_STRING=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=sgmpmc.ddns.com.br)(PORT=8978))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=WINT)))

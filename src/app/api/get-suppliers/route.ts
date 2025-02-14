@@ -1,15 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { AppDataSource, initializeDB } from "@/typeorm.config";
-import { Order } from "@/entities/order";
+import { AppDataSource, initializeDB } from "@/typeorm.config";;
+import { Supplier } from "@/entities/supplier";
 
 export async function GET(req: NextRequest) {
    await initializeDB();
-    const productRepo = AppDataSource.getRepository(Order);
-    let orders: Order[];
+    const supplierRepo = AppDataSource.getRepository(Supplier);
+    let suppliers: Supplier[];
   
     if (req.method === "GET") {
       try {
-        orders = await productRepo.find();
+        suppliers = await supplierRepo.find();
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
         return NextResponse.json({ error: "Erro ao buscar dados" }, { status: 500 });
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: "Método não permitido" }, { status: 405 });
     }
 
-  return NextResponse.json(orders, { status: 200 });
+  return NextResponse.json(suppliers, { status: 200 });
 }
 
 // export async function POST(req: NextRequest) {

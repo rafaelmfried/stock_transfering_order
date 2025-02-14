@@ -1,5 +1,11 @@
 import { DataSource } from "typeorm";
-import { Order } from "./entities/order";
+// import { Order } from "@/entities/order";
+import { Product } from "@/entities/product";
+import { Supplier } from "@/entities/supplier";
+import { Departament } from "@/entities/departament";
+import { Section } from "@/entities/section";
+import { Branch } from "@/entities/branch";
+import { Group } from "./entities/group";
 
 export const AppDataSource = new DataSource({
   type: "oracle",
@@ -7,12 +13,12 @@ export const AppDataSource = new DataSource({
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  sid: process.env.DB_SID, // SID do Oracle
-  synchronize: false, // Altere para true apenas no desenvolvimento
+  serviceName: process.env.DB_SERVICE_NAME,
+  connectString: process.env.DB_CONNECT_STRING,
+  synchronize: false,
   logging: true,
-  entities: [Order],
+  entities: [Product, Supplier, Departament, Section, Branch, Group],
   extra: {
-    // Configuração necessária para conexões persistentes no Oracle
     poolMax: 10,
     poolMin: 2,
     poolTimeout: 60,
